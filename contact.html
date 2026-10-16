@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Hillcreek Properties</title>
+  <link rel="icon" href="assets/img/logo-512.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div id="nav"></div>
+  <main class="wrap">
+    <div class="page-head">
+      <span class="script">say hello</span>
+      <h1>Contact Us</h1>
+      <p>Questions about a home, our process, or anything else? Send us a note and we'll get back to you.</p>
+    </div>
+    <div class="apply-grid">
+      <form class="form panel" id="contact-form" style="padding:40px">
+        <input class="hp" type="text" name="botcheck" tabindex="-1" autocomplete="off">
+        <div class="row">
+          <div><label>Your name</label><input name="name" required></div>
+          <div><label>Phone</label><input type="tel" name="phone"></div>
+        </div>
+        <div><label>Email</label><input type="email" name="email" required></div>
+        <div><label>What can we help with?</label><select name="topic" id="topic">
+          <option value="">General question</option>
+          <option value="A specific home">A specific home</option>
+          <option value="Scheduling a tour">Scheduling a tour</option>
+          <option value="Something else">Something else</option>
+        </select></div>
+        <div><label>Message</label><textarea name="message" required placeholder="Tell us what's on your mind..."></textarea></div>
+        <div id="contact-msg"></div>
+        <button class="btn" type="submit">Send message</button>
+      </form>
+      <aside>
+        <div class="panel">
+          <span class="script">reach us directly</span>
+          <h3>Email</h3>
+          <p><a id="mail-link" style="color:var(--navy);border-bottom:1px solid var(--sand)"></a></p>
+          <p style="margin-top:18px">We reply to every message, usually within a business day or two.</p>
+        </div>
+        <div class="panel navy">
+          <h3>Already a tenant?</h3>
+          <p>Messages and maintenance requests from current tenants go through the Tenant Portal so nothing gets missed.</p>
+          <a class="btn light" id="portal-link" target="_blank" rel="noopener">Open the Tenant Portal</a>
+        </div>
+      </aside>
+    </div>
+  </main>
+  <div id="footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/seed.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script>
+    (function () {
+      const CFG = window.HC_CONFIG, f = HC.fmt;
+      document.getElementById("nav").innerHTML = HC.ui.nav();
+      document.getElementById("footer").innerHTML = HC.ui.footer();
+      const m = document.getElementById("mail-link"); m.href = "mailto:" + CFG.CONTACT_EMAIL; m.textContent = CFG.CONTACT_EMAIL;
+      document.getElementById("portal-link").href = CFG.RENTREADI_URL;
+
+      const form = document.getElementById("contact-form");
+      form.addEventListener("submit", async e => {
+        e.preventDefault(); if (form.botcheck.value) return;
+        const btn = form.querySelector("button[type=submit]"); btn.disabled = true;
+        const msg = document.getElementById("contact-msg");
+        try {
+          await HC.submitInquiry({
+            kind: "contact", property_id: null, property_name: form.topic.value || "General question",
+            name: form.name.value.trim(), email: form.email.value.trim(), phone: form.phone.value.trim() || null,
+            message: form.message.value.trim()
+          });
+          form.innerHTML = `<span class="script">thank you</span><h3>Message sent.</h3><p class="muted">We'll get back to you soon. In the meantime, feel free to keep browsing.</p><a class="btn ghost" href="index.html#homes">Back to our homes</a>`;
+        } catch (err) {
+          console.error(err);
+          msg.innerHTML = `<div class="note err">Something went wrong sending that. Please email us directly at <a href="mailto:${CFG.CONTACT_EMAIL}">${CFG.CONTACT_EMAIL}</a>.</div>`;
+          btn.disabled = false;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

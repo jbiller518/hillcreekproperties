@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apply | Hillcreek Properties</title>
+  <link rel="icon" href="assets/img/logo-512.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div id="nav"></div>
+  <main class="wrap">
+    <div class="page-head">
+      <span class="script">let's get you home</span>
+      <h1 id="page-title">Apply</h1>
+      <p id="page-sub">Tell us a little about yourself and the home you're interested in. We'll reach out within one business day.</p>
+    </div>
+    <div class="apply-grid">
+      <form class="form panel" id="apply-form" style="padding:40px">
+        <input class="hp" type="text" name="botcheck" tabindex="-1" autocomplete="off">
+        <div><label>Which home?</label><select name="property" id="property-select"><option value="">General inquiry (no specific home)</option></select></div>
+        <div class="row">
+          <div><label>Full name</label><input name="name" required></div>
+          <div><label>Phone</label><input type="tel" name="phone" required></div>
+        </div>
+        <div><label>Email</label><input type="email" name="email" required></div>
+        <div class="row">
+          <div><label>Desired move-in date</label><input type="date" name="move_in"></div>
+          <div><label>Number of occupants</label><input type="number" min="1" name="occupants" placeholder="e.g. 2"></div>
+        </div>
+        <div><label>Pets</label><input name="pets" placeholder="e.g. one 20 lb dog, or none"></div>
+        <div><label>Tell us about yourself</label><textarea name="message" placeholder="Where you're moving from, what you're looking for, questions for us..."></textarea></div>
+        <div id="apply-msg"></div>
+        <button class="btn" type="submit">Send application</button>
+      </form>
+      <aside>
+        <div class="panel">
+          <span class="script">what happens next</span>
+          <h3>Our simple process</h3>
+          <ol style="padding-left:20px;color:var(--muted);font-size:.96rem;line-height:1.8">
+            <li>We receive your note and reply within one business day.</li>
+            <li>We schedule a walk-through of the home.</li>
+            <li>If it's a fit, we send the formal application and screening.</li>
+            <li>Sign the lease and pick up your keys.</li>
+          </ol>
+        </div>
+        <div class="panel navy">
+          <h3>Questions first?</h3>
+          <p>We're happy to help. Email us any time.</p>
+          <a class="btn light" id="mail-link">Email us</a>
+        </div>
+      </aside>
+    </div>
+  </main>
+  <div id="footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/seed.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script>
+    (async function () {
+      const CFG = window.HC_CONFIG, f = HC.fmt;
+      document.getElementById("nav").innerHTML = HC.ui.nav();
+      document.getElementById("footer").innerHTML = HC.ui.footer();
+      document.getElementById("mail-link").href = "mailto:" + CFG.CONTACT_EMAIL;
+
+      const qs = new URLSearchParams(location.search);
+      const pre = qs.get("home"), tour = qs.get("tour");
+      if (tour) { document.getElementById("page-title").textContent = "Request a tour"; document.getElementById("page-sub").textContent = "Tell us when works for you and we'll set up a walk-through."; }
+
+      const sel = document.getElementById("property-select");
+      let props = [];
+      try { props = await HC.getProperties(); } catch (e) { console.error(e); }
+      props.filter(p => p.is_available).forEach(p => {
+        const o = document.createElement("option"); o.value = p.id; o.textContent = `${p.name} - ${f.addr(p)}`; o.dataset.name = p.name;
+        if (p.slug === pre) o.selected = true; sel.appendChild(o);
+      });
+
+      const form = document.getElementById("apply-form");
+      form.addEventListener("submit", async e => {
+        e.preventDefault(); if (form.botcheck.value) return;
+        const btn = form.querySelector("button[type=submit]"); btn.disabled = true;
+        const msg = document.getElementById("apply-msg");
+        const opt = sel.options[sel.selectedIndex];
+        try {
+          await HC.submitInquiry({
+            kind: tour ? "tour" : "apply", property_id: sel.value || null, property_name: opt && opt.dataset.name || null,
+            name: form.name.value.trim(), email: form.email.value.trim(), phone: form.phone.value.trim(),
+            move_in: form.move_in.value || null, occupants: form.occupants.value || null, pets: form.pets.value.trim() || null, message: form.message.value.trim() || null
+          });
+          form.innerHTML = `<span class="script">thank you</span><h3>We've got it.</h3><p class="muted">We'll be in touch within one business day. In the meantime, feel free to keep browsing.</p><a class="btn ghost" href="index.html#homes">Back to our homes</a>`;
+        } catch (err) {
+          console.error(err);
+          msg.innerHTML = `<div class="note err">Something went wrong sending that. Please email us directly at <a href="mailto:${CFG.CONTACT_EMAIL}">${CFG.CONTACT_EMAIL}</a>.</div>`;
+          btn.disabled = false;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

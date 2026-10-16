@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hillcreek Properties | Rental Homes in Central Ohio</title>
+  <meta name="description" content="Thoughtfully kept single-family homes and duplexes for rent across Central Ohio. Browse available homes, join a waitlist, and apply online.">
+  <link rel="icon" href="assets/img/logo-512.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div id="nav"></div>
+
+  <!-- HERO -->
+  <section class="hero" style="padding:0">
+    <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?auto=format&fit=crop&w=2000&q=70')"></div>
+    <div class="hero-card">
+      <span class="script">welcome home</span>
+      <h1>Thoughtfully kept homes in Central Ohio</h1>
+      <p>Single-family homes and duplexes cared for like our own, priced for real life. Find the one that feels like yours.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#available">See available homes</a>
+        <a class="btn ghost" href="#homes">Browse the collection</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <div class="values">
+    <div class="wrap values-grid">
+      <div class="value reveal">
+        <div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></div>
+        <h3>Homes, not units</h3>
+        <p>Every property is kept up with the details that make a house feel settled: clean, working, and ready for you to put down roots.</p>
+      </div>
+      <div class="value reveal">
+        <div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-16 0 8 8 0 0 1 16 0z"/><path d="M12 8v4l3 2"/></svg></div>
+        <h3>Responsive care</h3>
+        <p>Maintenance requests and messages go straight through our resident portal, so nothing waits in a voicemail box.</p>
+      </div>
+      <div class="value reveal">
+        <div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+        <h3>Convenient to everything</h3>
+        <p>Established Columbus and Whitehall locations with quick access to the highways, grocery stores, bus lines, and everyday errands.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- AVAILABLE NOW -->
+  <section id="available">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="script">now leasing</span>
+        <h2>Available Homes</h2>
+        <p>Ready for you to move in. Tap a home to see photos, details, and apply.</p>
+      </div>
+      <div class="grid" id="available-grid"></div>
+    </div>
+  </section>
+
+  <!-- ALL HOMES -->
+  <section id="homes" style="background:#fff;padding-top:80px">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="script">the collection</span>
+        <h2>Our Homes</h2>
+        <p>Every home in the Hillcreek family. Love one that's currently leased? Join its waitlist and we'll reach out the moment it opens up.</p>
+      </div>
+      <div class="filters">
+        <button class="chip active" data-filter="all">All homes</button>
+        <button class="chip" data-filter="single-family">Single-family</button>
+        <button class="chip" data-filter="duplex">Duplexes</button>
+      </div>
+      <div class="grid" id="all-grid"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about">
+    <div class="wrap about-grid">
+      <div class="about-photo reveal">
+        <img src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=1200&q=72" alt="A bright, welcoming living room">
+        <div class="frame"></div>
+      </div>
+      <div class="about-text reveal">
+        <span class="script">our story</span>
+        <h2>Small portfolio. Big attention.</h2>
+        <p>Hillcreek Properties is an owner-operated collection of homes in Central Ohio. We keep it intentionally small so we can know every house and every resident by name.</p>
+        <p>We believe a rental should feel like home from the first day: clean, cared for, and backed by people who answer when you reach out. That's the standard we hold ourselves to in every one of our homes.</p>
+        <a class="link-arrow" href="apply.html">Start an application &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TENANTS -->
+  <section id="tenants" class="tenants">
+    <div class="wrap">
+      <span class="script">already home with us?</span>
+      <h2>Tenant Portal</h2>
+      <p>Current tenants use RentReadi to send us a message or submit a maintenance request. It's the fastest way to reach us, day or night.</p>
+      <a class="btn light" id="rr-message" target="_blank" rel="noopener">Message us</a>
+      <a class="btn light" id="rr-maint" target="_blank" rel="noopener">Submit a maintenance request</a>
+      <p style="margin-top:22px;font-size:.92rem">Not a tenant yet? <a href="contact.html" style="color:#fff;border-bottom:1px solid rgba(255,255,255,.5)">Contact us here</a>.</p>
+    </div>
+  </section>
+
+  <div id="footer"></div>
+
+  <!-- Waitlist modal -->
+  <div class="modal" id="waitlist-modal">
+    <div class="box">
+      <button class="x" aria-label="Close" onclick="closeWaitlist()">&times;</button>
+      <span class="script">join the waitlist</span>
+      <h3 id="wl-title">Home name</h3>
+      <p class="muted" style="font-size:.95rem">Leave your details and we'll reach out the moment this home becomes available.</p>
+      <form class="form" id="wl-form">
+        <input type="hidden" name="property_id"><input type="hidden" name="property_name">
+        <input class="hp" type="text" name="botcheck" tabindex="-1" autocomplete="off">
+        <div><label>Your name</label><input name="name" required></div>
+        <div class="row">
+          <div><label>Email</label><input type="email" name="email" required></div>
+          <div><label>Phone</label><input type="tel" name="phone" required></div>
+        </div>
+        <div><label>Anything we should know?</label><textarea name="message" style="min-height:90px" placeholder="Ideal move-in date, pets, questions..."></textarea></div>
+        <div id="wl-msg"></div>
+        <button class="btn sage" type="submit">Add me to the list</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/seed.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/site.js"></script>
+</body>
+</html>
