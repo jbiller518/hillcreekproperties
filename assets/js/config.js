@@ -9,7 +9,7 @@ window.HC_CONFIG = {
 
   // --- Email delivery for the Apply / Contact / Waitlist forms (formspree.io form ID, e.g. "xqeowjby") ---
   // Leave blank and forms will still be saved to the admin dashboard inbox.
-  FORMSPREE_FORM_ID: "",
+  FORMSPREE_FORM_ID: "xzedyqdq",
 
   // --- Links & contact ---
   RENTREADI_URL: "https://tenant.rentredi.com/getStarted",
