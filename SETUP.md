@@ -24,7 +24,7 @@ Save the logo as `assets/img/logo.png`. Until it exists the site shows a text wo
 ## Status (updated 2026-10-16)
 - Supabase project **hillcreek** is live (org: Hillcreek Properties). Keys are already in `config.js`. Owner login: admin@hillcreekproperties.com.
 - Code is on GitHub at https://github.com/jbiller518/hillcreekproperties and GitHub Pages is enabled with custom domain hillcreekproperties.com.
-- DNS at GoDaddy is done (2026-10-16). Still to do: the Formspree form ID (Step 3) and Enforce HTTPS on GitHub Pages.
+- DNS at GoDaddy, Formspree (form xzedyqdq -> admin@hillcreekproperties.com) and Enforce HTTPS are all done (2026-10-16). The site is fully live at https://hillcreekproperties.com.
 
 ## Step 2 — Supabase (free database + photo storage + owner login) — DONE
 1. Go to https://supabase.com and create a free account, then **New project** (name it `hillcreek`, pick a strong database password, region: East US).
