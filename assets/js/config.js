@@ -7,9 +7,9 @@ window.HC_CONFIG = {
   SUPABASE_URL: "https://juudqeegemudaujgvawj.supabase.co",
   SUPABASE_ANON_KEY: "sb_publishable_pNTn7AJkRKWRocH6BIlyfQ_R6uZCrL_",
 
-  // --- Email delivery for the Apply / Waitlist forms (web3forms.com access key) ---
+  // --- Email delivery for the Apply / Contact / Waitlist forms (formspree.io form ID, e.g. "xqeowjby") ---
   // Leave blank and forms will still be saved to the admin dashboard inbox.
-  WEB3FORMS_KEY: "",
+  FORMSPREE_FORM_ID: "",
 
   // --- Links & contact ---
   RENTREADI_URL: "https://tenant.rentredi.com/getStarted",

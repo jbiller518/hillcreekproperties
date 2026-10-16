@@ -24,7 +24,7 @@ Save the logo as `assets/img/logo.png`. Until it exists the site shows a text wo
 ## Status (updated 2026-10-16)
 - Supabase project **hillcreek** is live (org: Hillcreek Properties). Keys are already in `config.js`. Owner login: admin@hillcreekproperties.com.
 - Code is on GitHub at https://github.com/jbiller518/hillcreekproperties and GitHub Pages is enabled with custom domain hillcreekproperties.com.
-- Still to do: GoDaddy DNS (Step 4, item 5) and the Web3Forms key (Step 3).
+- DNS at GoDaddy is done (2026-10-16). Still to do: the Formspree form ID (Step 3) and Enforce HTTPS on GitHub Pages.
 
 ## Step 2 — Supabase (free database + photo storage + owner login) — DONE
 1. Go to https://supabase.com and create a free account, then **New project** (name it `hillcreek`, pick a strong database password, region: East US).
@@ -37,9 +37,10 @@ Save the logo as `assets/img/logo.png`. Until it exists the site shows a text wo
    ```
 5. Also in Authentication → **Providers** → Email, turn **off** "Allow new users to sign up" so nobody else can create a login.
 
-## Step 3 — Email delivery for the Apply form (free)
-1. Go to https://web3forms.com, enter `admin@hillcreekproperties.com`, and click the confirmation link that lands in that inbox.
-2. Paste the access key it gives you into `config.js` → `WEB3FORMS_KEY`.
+## Step 3 — Email delivery for the Apply / Contact forms (Formspree, same as CTBA.us)
+1. Sign in at https://formspree.io, click **New Form**, name it "Hillcreek Properties", recipient `admin@hillcreekproperties.com`.
+2. Confirm the verification email Formspree sends to that inbox.
+3. Copy the form ID (the short code after `formspree.io/f/`) into `config.js` → `FORMSPREE_FORM_ID`.
 Applications, tour requests and waitlist sign-ups are *also* saved to the dashboard Inbox, so nothing is lost if an email goes astray.
 
 ## Step 4 — Publish on GitHub Pages — DONE except DNS

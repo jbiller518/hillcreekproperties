@@ -53,19 +53,18 @@
     // ===== inquiries (apply / waitlist) =====
     async submitInquiry(inq) {
       let emailed = false;
-      if (CFG.WEB3FORMS_KEY) {
+      if (CFG.FORMSPREE_FORM_ID) {
+        const label = { apply: "Rental application", tour: "Tour request", waitlist: "Waitlist request", contact: "Message" }[inq.kind] || "Inquiry";
         try {
-          const res = await fetch("https://api.web3forms.com/submit", {
+          const res = await fetch("https://formspree.io/f/" + CFG.FORMSPREE_FORM_ID, {
             method: "POST",
             headers: { "Content-Type": "application/json", Accept: "application/json" },
             body: JSON.stringify({
-              access_key: CFG.WEB3FORMS_KEY,
-              subject: `${inq.kind === "waitlist" ? "Waitlist request" : "Rental application"} - ${inq.property_name || "General"} - ${inq.name}`,
-              from_name: CFG.SITE_NAME,
-              name: inq.name, email: inq.email, phone: inq.phone,
+              _subject: `${label} - ${inq.property_name || "General"} - ${inq.name}`,
+              name: inq.name, email: inq.email, phone: inq.phone || "",
               property: inq.property_name || "General inquiry",
               move_in: inq.move_in || "", occupants: inq.occupants || "", pets: inq.pets || "",
-              message: inq.message || "", kind: inq.kind
+              message: inq.message || "", type: label
             })
           });
           emailed = res.ok;
