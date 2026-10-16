@@ -27,7 +27,9 @@
   const paragraphs = String(p.description || "").split(/\n{2,}|\n/).map(s => s.trim()).filter(Boolean);
   const applyHref = `apply.html?home=${encodeURIComponent(p.slug)}`;
 
-  const tiles = gallery.slice(0, 3).map((u, i) => `<div class="g" onclick="lbOpen(${i})"><img src="${f.esc(u)}" alt="${f.esc(p.name)} photo ${i + 1}">${i === 2 && gallery.length > 3 ? `<span class="more">+${gallery.length - 3} more photos</span>` : ""}</div>`).join("");
+  const tiles = gallery.length
+    ? gallery.slice(0, 3).map((u, i) => `<div class="g" onclick="lbOpen(${i})"><img src="${f.esc(u)}" alt="${f.esc(p.name)} photo ${i + 1}">${i === 2 && gallery.length > 3 ? `<span class="more">+${gallery.length - 3} more photos</span>` : ""}</div>`).join("")
+    : `<div class="g" style="grid-column:1/-1;grid-row:1/-1;cursor:default"><div class="photo-soon">photos coming soon</div></div>`;
 
   const detailRows = [
     ["Home type", f.typeLabel(p.type)],

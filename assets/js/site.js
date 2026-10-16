@@ -27,7 +27,7 @@
   function card(p) {
     const avail = !!p.is_available;
     const href = `property.html?home=${encodeURIComponent(p.slug)}`;
-    const img = `<img src="${f.esc(p.cover_url || "")}" alt="${f.esc(p.name)}" loading="lazy">`;
+    const img = p.cover_url ? `<img src="${f.esc(p.cover_url)}" alt="${f.esc(p.name)}" loading="lazy">` : `<div class="photo-soon">photo coming soon</div>`;
     const price = f.money(p.rent);
     if (avail) {
       return `<a class="card reveal" href="${href}">

@@ -86,7 +86,7 @@
   }
   function row(p) {
     return `<div class="prow">
-      <img class="thumb" src="${f.esc(p.cover_url || "")}" alt="" onerror="this.style.visibility='hidden'">
+      ${p.cover_url ? `<img class="thumb" src="${f.esc(p.cover_url)}" alt="">` : `<div class="thumb" style="display:grid;place-items:center;font-family:var(--script);color:#fff;font-size:1rem;background:linear-gradient(160deg,var(--sand),#d9cdb9)">no photo</div>`}
       <div><div class="nm">${f.esc(p.name)}</div><div class="ad">${f.esc(f.addr(p))}, ${f.esc(f.cityLine(p))}</div>
         <div class="meta">${f.typeLabel(p.type)} &middot; ${f.num(p.beds)} bd / ${f.baths(p.baths)} ba &middot; ${f.money(p.rent) ? f.money(p.rent) + "/mo" : "No rent set"}</div></div>
       <div class="status ${p.is_available ? "on" : "off"}">${p.is_available ? "Available" : "Leased"}</div>
