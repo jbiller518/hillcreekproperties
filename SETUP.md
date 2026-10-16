@@ -21,7 +21,12 @@ sample data so you can preview everything locally.
 ## Step 1 — Logo
 Save the logo as `assets/img/logo.png`. Until it exists the site shows a text wordmark.
 
-## Step 2 — Supabase (free database + photo storage + owner login)
+## Status (updated 2026-10-16)
+- Supabase project **hillcreek** is live (org: Hillcreek Properties). Keys are already in `config.js`. Owner login: admin@hillcreekproperties.com.
+- Code is on GitHub at https://github.com/jbiller518/hillcreekproperties and GitHub Pages is enabled with custom domain hillcreekproperties.com.
+- Still to do: GoDaddy DNS (Step 4, item 5) and the Web3Forms key (Step 3).
+
+## Step 2 — Supabase (free database + photo storage + owner login) — DONE
 1. Go to https://supabase.com and create a free account, then **New project** (name it `hillcreek`, pick a strong database password, region: East US).
 2. In the left sidebar open **SQL Editor** → **New query**, paste the entire contents of `supabase/schema.sql`, press **Run**.
 3. Open **Authentication** → **Users** → **Add user** → **Create new user**. Enter your email + a password. Tick "Auto confirm user". This is your dashboard login.
@@ -37,14 +42,22 @@ Save the logo as `assets/img/logo.png`. Until it exists the site shows a text wo
 2. Paste the access key it gives you into `config.js` → `WEB3FORMS_KEY`.
 Applications, tour requests and waitlist sign-ups are *also* saved to the dashboard Inbox, so nothing is lost if an email goes astray.
 
-## Step 4 — Publish on GitHub Pages
+## Step 4 — Publish on GitHub Pages — DONE except DNS
 1. Create a GitHub account (if you don't have one) and a new **public** repository named `hillcreekproperties`.
 2. Upload every file and folder in this directory **except** `assets-from-me/` and `SETUP.md` (those are fine to include, just not needed).
 3. Repository **Settings** → **Pages** → Source: *Deploy from a branch*, Branch: `main` / root. Save.
 4. In the same Pages screen set **Custom domain** to `hillcreekproperties.com` and tick *Enforce HTTPS* once it verifies.
 5. At your domain registrar add these DNS records:
    - `A` records for `@` → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-   - `CNAME` record for `www` → `<your-github-username>.github.io`
+   - `CNAME` record for `www` → `jbiller518.github.io`
+   - Also delete the domain **Forwarding** rule (currently points to a Zillow listing) under DNS → Forwarding, or it will override the A records.
+
+## Updating the site later
+Edit files in this folder, then in a terminal here run:
+```bash
+git add -A && git commit -m "Update site" && git push
+```
+GitHub Pages republishes within a minute or two.
 
 ## Day-to-day
 - Go to **hillcreekproperties.com/admin.html**, sign in.
