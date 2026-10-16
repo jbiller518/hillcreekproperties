@@ -4,8 +4,8 @@
 // ============================================================
 window.HC_CONFIG = {
   // --- Supabase (leave blank to run in demo mode with sample data) ---
-  SUPABASE_URL: "",
-  SUPABASE_ANON_KEY: "",
+  SUPABASE_URL: "https://juudqeegemudaujgvawj.supabase.co",
+  SUPABASE_ANON_KEY: "sb_publishable_pNTn7AJkRKWRocH6BIlyfQ_R6uZCrL_",
 
   // --- Email delivery for the Apply / Waitlist forms (web3forms.com access key) ---
   // Leave blank and forms will still be saved to the admin dashboard inbox.
